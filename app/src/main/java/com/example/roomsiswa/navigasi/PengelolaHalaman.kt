@@ -11,16 +11,15 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.roomsiswa.R
-import com.example.roomsiswa.ui.theme.Halaman.DestinasiEntry
 import com.example.roomsiswa.ui.theme.Halaman.DestinasiHome
-import com.example.roomsiswa.ui.theme.Halaman.EntrySiswaScreen
 import com.example.roomsiswa.ui.theme.Halaman.HomeScreen
+import com.example.roomsiswa.ui.theme.halaman.DestinasiEntry
+import com.example.roomsiswa.ui.theme.halaman.EntrySiswaScreen
 
 @Composable
 fun SiswaApp(navController: NavHostController = rememberNavController()){
@@ -64,7 +63,7 @@ fun HostNavigasi(
                 navigateToItemEntry = {navController.navigate(DestinasiEntry.route)})
         }
         composable(DestinasiEntry.route){
-            EntrySiswaScreen(navigateBack = {navController.popBackStack()})
+            EntrySiswaScreen(navigetBack = {navController.popBackStack()})
         }
     }
 }

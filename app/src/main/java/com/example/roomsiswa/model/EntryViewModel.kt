@@ -1,36 +1,33 @@
 package com.example.roomsiswa.model
 
-import android.app.PictureInPictureUiState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.roomsiswa.Repositori.OfflineRepositoriSiswa
 import com.example.roomsiswa.Repositori.RepositoriSiswa
-import com.example.roomsiswa.data.DatabaseSiswa
 import com.example.roomsiswa.data.Siswa
 
 class EntryViewModel(private  val repositoriSiswa: RepositoriSiswa): ViewModel(){
     /**
      * Berisi status Siswa saat ini
      */
-    var uiStateSiswa by mutableStateOf(UIStateSiswa())
+    var UiStateSiswa by mutableStateOf(UIStateSiswa())
         private set
 
     /* Fungsi untuk memvalidasi input */
-    private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailSiswa): Boolean {
+    private fun validasiInput(uiState: DetailSiswa = UiStateSiswa.detailSiswa): Boolean {
         return with(uiState) {
             nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
         }
     }
         fun updateUiState(detailSiswa: DetailSiswa) {
-            uiStateSiswa =
+            UiStateSiswa =
                 UIStateSiswa(detailSiswa = detailSiswa, isEntryValid = validasiInput(detailSiswa))
         }
     /* Fungsi untuk menyimpan data yang di-entry */
         suspend fun saveSiswa() {
             if (validasiInput()) {
-                repositoriSiswa.insertSiswa(uiStateSiswa.detailSiswa.toSiswa())
+                repositoriSiswa.insertSiswa(UiStateSiswa.detailSiswa.toSiswa())
             }
         }
     }
