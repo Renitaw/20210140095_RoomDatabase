@@ -1,5 +1,7 @@
 package com.example.roomsiswa.ui.theme.Halaman
 
+import android.text.Spannable
+import android.text.Spannable.Factory
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,6 +33,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.roomsiswa.R
 import com.example.roomsiswa.data.Siswa
 import com.example.roomsiswa.model.HomeViewModel
@@ -48,7 +51,7 @@ object DestinasiHome : DestinasiNavigasi {
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = androidx.lifecycle.viewmodel.compose.viewModel(factory = PenyediaViewModel.Factory)
+    viewModel: HomeViewModel = viewModel(factory = Factory)
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
@@ -87,7 +90,8 @@ fun HomeScreen(
 @Composable
 fun BodyHome(
     itemSiswa: List<Siswa>,
-    modifier: Modifier=Modifier){
+    modifier: Modifier=Modifier
+) {
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
@@ -110,7 +114,7 @@ fun BodyHome(
 @Composable
 fun ListSiswa(
     itemSiswa: List<Siswa>,
-    modifier: Modifier=Modifier
+    modifier: Modifier = Modifier
 ){
     LazyColumn(modifier = Modifier){
         items(items = itemSiswa, key = {it.id}){
